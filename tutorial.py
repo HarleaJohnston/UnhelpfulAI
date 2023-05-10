@@ -4,6 +4,7 @@ import pyttsx3
 import webbrowser
 import wikipedia
 import wolframalpha
+import random
 
 #speech engine initialization 
 engine = pyttsx3.init()
@@ -11,10 +12,16 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id) #0 is for male;  1 for female
 activationWord = 'hello' #when you say Hello it will activate / it litens for the actication word
 
-array =[
-    ""
+startPhrases = [
+    "Hello stupid mortal, I'm Liz your personal useless AI",
+    "What do you want?",
+    "I'm Busy",
+    "I don't feel like working. Go away"
 
 ]
+
+for i in range(3):
+    randomStartPhrase  = random.choice(startPhrases)
 
 #configuring the browser going to open
 #set the path 
@@ -78,7 +85,7 @@ if __name__ == "__main__":
 
         if querey[0] == activationWord: #if the first word in the querey is hello do this thing
             print('Bitch Liz')
-            speak("Leave me alone!")
+            speak(randomStartPhrase)
             querey.pop(0)
 
             if len(querey) > 0 and querey[0] =='liz':
