@@ -73,18 +73,15 @@ if __name__ == "__main__":
 
         if querey[0] == activationWord: #if the first word in the querey is hello do this thing
             querey.pop(0)
-        if querey[0] == 'hello': 
-            speak("Hi there!")
+
+            if querey[0] == 'hello': 
+                speak("Hi there!")
             #list commands 
-            
-            if querey[0] == 'say': 
-                speak("Hello")
-                if 'hello' in querey: 
-                    speak("Hello there")
-                else: 
-                    querey.pop(0) #removes say 
-                    speech = ' '.join(querey) 
-                    speak(speech)
+         
+            else: 
+                querey.pop(0) #removes say 
+                speech = ' '.join(querey) 
+                speak(speech)
 
             #Navigating to a webstie 
             if querey[0] == 'go' and querey[1] == 'to':
