@@ -20,7 +20,7 @@ startPhrases = [
 
 ]
 
-for i in range(3):
+for i in range(4):
     randomStartPhrase  = random.choice(startPhrases)
 
 #configuring the browser going to open
@@ -88,14 +88,14 @@ if __name__ == "__main__":
             speak(randomStartPhrase)
             querey.pop(0)
 
-            if len(querey) > 0 and querey[0] =='liz':
-                    speak("Silly Mortal") 
-            else: 
-                speak("What do you want?")
+           # if len(querey) > 0 and querey[0] =='liz':
+            #        speak("Silly Mortal") 
+           # else: 
+            #    speak("What do you want?")
                 
             #list commands 
-        if querey[0] == 'liz': 
-            speak("Yes? What can I do for your stupid ass")
+    #    if querey[0] == 'liz': 
+           # speak("Yes? What can I do for your stupid ass")
 
 
 
