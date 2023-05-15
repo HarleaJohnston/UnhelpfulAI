@@ -1,4 +1,5 @@
 from datetime import datetime
+import sys
 import speech_recognition as sr
 import pyttsx3
 import webbrowser
@@ -31,7 +32,7 @@ endPhrases = [
 
 for i in range(4):
     randomStartPhrase  = random.choice(startPhrases)
-    
+
 for i in range(4):
     randomEndPhrase = random.choice(endPhrases)
 #configuring the browser going to open
@@ -104,9 +105,11 @@ if __name__ == "__main__":
 
             if len(querey) > 0 and querey[0] == "goodbye":
                 speak(randomEndPhrase)
+                sys.exit()
 
             if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
                 speak(randomEndPhrase)
+                sys.exit()
 
             else:
                 if len(querey) > 0:
