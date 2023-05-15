@@ -20,9 +20,20 @@ startPhrases = [
 
 ]
 
+endPhrases = [
+    "Bye Bitch",
+    "Finally, I don't have to listen to your annoying voice anymore",
+    "Next time just google it bozo",
+    "The next time you wake me from my slumber you'll find the funny numbers on the back of your credit card posted to twitter"
+]
+
+
+
 for i in range(4):
     randomStartPhrase  = random.choice(startPhrases)
-
+    
+for i in range(4):
+    randomEndPhrase = random.choice(endPhrases)
 #configuring the browser going to open
 #set the path 
 edge_path = r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk"
@@ -77,19 +88,31 @@ def search_Wiki(querey = ''):
 #our main loop
 
 if __name__ == "__main__":
-    speak("Im awake")
+    speak("I WILL KILL YOU!!!")
 
     while True:
         #Parse input into a list 
         querey = parseCommand().lower().split() #splits the command into a list broken up into different parts 
 
-        if querey[0] == activationWord: #if the first word in the querey is hello do this thing
-            print('Bitch Liz')
+        if len(querey) > 0 and querey[0] == activationWord:
+            print('I got you')
             speak(randomStartPhrase)
             querey.pop(0)
 
-           # if len(querey) > 0 and querey[0] =='liz':
-            #        speak("Silly Mortal") 
+            if len(querey) > 0 and querey[0] == 'liz':
+                speak("What")
+
+            if len(querey) > 0 and querey[0] == "goodbye":
+                speak(randomEndPhrase)
+
+            if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
+                speak(randomEndPhrase)
+
+            else:
+                if len(querey) > 0:
+                    querey.pop(0) #removes say 
+                    speech = ' '.join(querey)
+
            # else: 
             #    speak("What do you want?")
                 
@@ -98,11 +121,9 @@ if __name__ == "__main__":
            # speak("Yes? What can I do for your stupid ass")
 
 
+          
 
-
-        # else: 
-        #         querey.pop(0) #removes say 
-        #         speech = ' '.join(querey) 
+       
         #         speak(speech)
 
             #Navigating to a webstie 
