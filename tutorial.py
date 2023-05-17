@@ -141,9 +141,7 @@ if __name__ == "__main__":
                 
 
        
-        if not pleased: 
-                speak("LALALALA I CAN'T HERE YOU")
-                continue
+       
             # Navigating to a website
         if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
             if pleased: 
@@ -161,3 +159,8 @@ if __name__ == "__main__":
                     speak(result)
                 else:
                     speak("Please provide a search query.")
+
+                    
+        if not pleased: 
+                        speak("LALALALA I CAN'T HERE YOU")
+                        continue
