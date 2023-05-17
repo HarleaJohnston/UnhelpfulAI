@@ -37,8 +37,11 @@ for i in range(4):
     randomEndPhrase = random.choice(endPhrases)
 #configuring the browser going to open
 #set the path 
-edge_path = r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk"
-webbrowser.register('edge', None, webbrowser.BackgroundBrowser(edge_path))
+
+
+#This needs to be changed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tTHIS IS FOR MY SPECIFIC COMPUTER
+Opera_path = r"C:\Users\sbanfordbyington\AppData\Local\Programs\Opera GX\launcher.exe"
+#-------------------------------------------------------------------------------------
 
 
 def speak(text, rate = 150): 
@@ -64,7 +67,7 @@ def parseCommand():
         speak(f"You said {querey}")
     except Exception as exception: 
         print("I didn't quite get that")
-        speak("I didn't quite get that")
+        speak("I didn't quite get that :)")
         print(exception)
         return 'None'
     
@@ -117,31 +120,26 @@ if __name__ == "__main__":
             if len(querey) > 0:
                 querey.pop(0) #removes say 
                 speech = ' '.join(querey)
-
-           # else: 
-            #    speak("What do you want?")
-                
-            #list commands 
-    #    if querey[0] == 'liz': 
-           # speak("Yes? What can I do for your stupid ass")
-
-
-          
+ 
 
        
-        #         speak(speech)
+                speak(speech)
 
-            #Navigating to a webstie 
-        # if querey[0] == 'go' and querey[1] == 'to':
-        #         speak("Going to... ")
-        #         querey = ' '.join(querey[2])
-        #         webbrowser.get('edge').open_new(querey)
+        # Navigating to a website
+        if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
+            if len(querey) > 2:
+                speak("Going to...")
+                querey = ' '.join(querey[2:])
+                webbrowser.get("Opera").open_new(querey)
+            else:
+                speak("Please provide a website URL.")
 
-        #     #wikipedia 
-        # if querey[0] == 'wikipedia':
-        #         querey = ' '.join(querey[1:])
-        #         speak("Looking for that")
-        #         result = search_Wiki(querey)
-        #         speak(result)
-        #         speak(search_Wiki(querey))
-        
+        # Wikipedia search
+        if len(querey) > 1 and querey[0] == 'wikipedia':
+            if len(querey) > 1:
+                querey = ' '.join(querey[1:])
+                speak("Looking for that")
+                result = search_Wiki(querey)
+                speak(result)
+            else:
+                speak("Please provide a search query.")
