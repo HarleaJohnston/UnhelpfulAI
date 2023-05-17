@@ -57,7 +57,7 @@ def parseCommand():
     print('Listening for a comand')
 
     with sr.Microphone() as source: 
-        listener.adjust_for_ambient_noise(source, duration=0.2)
+        listener.adjust_for_ambient_noise(source, duration=0.3)
         audio = listener.listen(source)
         input_speech = audio
 
