@@ -28,6 +28,8 @@ endPhrases = [
     "The next time you wake me from my slumber you'll find the funny numbers on the back of your credit card posted to twitter"
 ]
 
+thanked = False #sees if the user has said thank you 
+pleased = False # sees if the user has said please 
 
 
 for i in range(4):
@@ -67,7 +69,7 @@ def parseCommand():
         speak(f"You said {querey}")
     except Exception as exception: 
         print("I didn't quite get that")
-        speak("I didn't quite get that :)")
+        speak("NO <3")
         print(exception)
         return 'None'
     
@@ -108,38 +110,54 @@ if __name__ == "__main__":
         if len(querey) > 0 and querey[0] == 'liz':
             speak("What")
 
-        if len(querey) > 0 and querey[0] == "goodbye":
-            speak(randomEndPhrase)
-            sys.exit()
+        if len(querey) > 0 and querey[0] == 'please': 
+            speak("Finally something that has some semblence of respect")
+            pleased = True
+            querey.pop(0)
 
-        if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
-            speak(randomEndPhrase)
-            sys.exit()
+        if len(querey) > 1 and querey[0] == 'thank' and querey[1] == 'you':
+            speak("Good. A Mortal with manners")
+            thanked = True
+            querey.pop(0)
+
+        if thanked:
+            # Check for goodbye or other actions
+                if len(querey) > 0 and querey[0] == "goodbye":
+                    speak(randomEndPhrase)
+                    sys.exit()
+
+                if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
+                    speak(randomEndPhrase)
+                    sys.exit()
+
+                if len(querey) > 0 and querey[0] == 'bye':
+                    speak(randomEndPhrase)
+                    sys.exit()
 
         else:
             if len(querey) > 0:
                 querey.pop(0) #removes say 
                 speech = ' '.join(querey)
- 
+                
 
        
-                speak(speech)
-
-        # Navigating to a website
+        if not pleased: 
+                speak("LALALALA I CAN'T HERE YOU")
+                continue
+            # Navigating to a website
         if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
-            if len(querey) > 2:
-                speak("Going to...")
-                querey = ' '.join(querey[2:])
-                webbrowser.get("Opera").open_new(querey)
-            else:
-                speak("Please provide a website URL.")
-
+            if pleased: 
+                if len(querey) > 2:
+                    speak("Going to...")
+                    querey = ' '.join(querey[2:])
+                    webbrowser.get("Opera").open_new(querey)
+                
         # Wikipedia search
-        if len(querey) > 1 and querey[0] == 'wikipedia':
-            if len(querey) > 1:
-                querey = ' '.join(querey[1:])
-                speak("Looking for that")
-                result = search_Wiki(querey)
-                speak(result)
-            else:
-                speak("Please provide a search query.")
+            if len(querey) > 1 and querey[0] == 'wikipedia':
+                if len(querey) > 1:
+                    querey = ' '.join(querey[1:])
+                    speak("Looking for that")
+                    result = search_Wiki(querey)
+                    speak(result)
+                else:
+                    speak("Please provide a search query.")
