@@ -52,8 +52,10 @@ def parseCommand():
     print('Listening for a comand')
 
     with sr.Microphone() as source: 
-        listener.pause_threshold = 2
-        input_speech = listener.listen(source)
+        listener.adjust_for_ambient_noise(source, duration=0.4)
+        audio = listener.listen(source)
+        #listener.pause_threshold = 2
+        input_speech = audio
 
     try: 
         print('Reconizing speech..')
@@ -74,7 +76,7 @@ def parseCommand():
 def search_Wiki(querey = ''):
     searchResults = wikipedia.search(querey) 
     if not searchResults: 
-        print('NO wikipedia result')
+        print('No wikipedia result')
         return 'No result recived'
     try:
         wikiPage = wikipedia.page(searchResults[0])
@@ -100,21 +102,21 @@ if __name__ == "__main__":
             speak(randomStartPhrase)
             querey.pop(0)
 
-            if len(querey) > 0 and querey[0] == 'liz':
-                speak("What")
+        if len(querey) > 0 and querey[0] == 'liz':
+            speak("What")
 
-            if len(querey) > 0 and querey[0] == "goodbye":
-                speak(randomEndPhrase)
-                sys.exit()
+        if len(querey) > 0 and querey[0] == "goodbye":
+            speak(randomEndPhrase)
+            sys.exit()
 
-            if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
-                speak(randomEndPhrase)
-                sys.exit()
+        if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
+            speak(randomEndPhrase)
+            sys.exit()
 
-            else:
-                if len(querey) > 0:
-                    querey.pop(0) #removes say 
-                    speech = ' '.join(querey)
+        else:
+            if len(querey) > 0:
+                querey.pop(0) #removes say 
+                speech = ' '.join(querey)
 
            # else: 
             #    speak("What do you want?")
