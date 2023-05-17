@@ -42,7 +42,7 @@ for i in range(4):
 
 
 #This needs to be changed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tTHIS IS FOR MY SPECIFIC COMPUTER
-Opera_path = r"C:\Users\sbanfordbyington\AppData\Local\Programs\Opera GX\launcher.exe"
+#Opera_path = r"C:\Users\sbanfordbyington\AppData\Local\Programs\Opera GX\launcher.exe"
 #-------------------------------------------------------------------------------------
 
 
