@@ -57,9 +57,8 @@ def parseCommand():
     print('Listening for a comand')
 
     with sr.Microphone() as source: 
-        listener.adjust_for_ambient_noise(source, duration=0.4)
+        listener.adjust_for_ambient_noise(source, duration=0.3)
         audio = listener.listen(source)
-        #listener.pause_threshold = 2
         input_speech = audio
 
     try: 
@@ -110,6 +109,8 @@ if __name__ == "__main__":
         if len(querey) > 0 and querey[0] == 'liz':
             speak("What")
 
+
+
         if len(querey) > 0 and querey[0] == 'please': 
             speak("Finally something that has some semblence of respect")
             pleased = True
@@ -141,9 +142,7 @@ if __name__ == "__main__":
                 
 
        
-        if not pleased: 
-                speak("LALALALA I CAN'T HERE YOU")
-                continue
+       
             # Navigating to a website
         if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
             if pleased: 
@@ -161,3 +160,8 @@ if __name__ == "__main__":
                     speak(result)
                 else:
                     speak("Please provide a search query.")
+
+                    
+        if not pleased: 
+                        speak("LALALALA I CAN'T HERE YOU")
+                        continue
