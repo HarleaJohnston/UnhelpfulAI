@@ -109,7 +109,10 @@ if __name__ == "__main__":
         if len(querey) > 0 and querey[0] == 'liz':
             speak("What")
 
-
+        if len(querey) > 0 and querey[0] == 'wikipedia':
+            querey = ' '.join(querey[1:])
+            speak('Looking through the universal databank.')
+            speak(search_Wiki(querey))
 
         if len(querey) > 0 and querey[0] == 'please': 
             speak("Finally something that has some semblence of respect")
@@ -163,5 +166,5 @@ if __name__ == "__main__":
 
                     
         if not pleased: 
-                        speak("LALALALA I CAN'T HERE YOU")
+                        speak("NO <3")
                         continue
