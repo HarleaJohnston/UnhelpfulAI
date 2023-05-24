@@ -68,7 +68,7 @@ def parseCommand():
         speak(f"You said {querey}")
     except Exception as exception: 
         print("I didn't quite get that")
-        speak("NO <3")
+        speak("I didnt quite get that")
         print(exception)
         return 'None'
     
@@ -95,7 +95,7 @@ def search_Wiki(querey = ''):
 #our main loop
 
 if __name__ == "__main__":
-    speak("I WILL KILL YOU!!!")
+    speak("Im awake")
 
     while True:
         #Parse input into a list 
@@ -138,21 +138,18 @@ if __name__ == "__main__":
                     speak(randomEndPhrase)
                     sys.exit()
 
-        else:
-            if len(querey) > 0:
-                querey.pop(0) #removes say 
-                speech = ' '.join(querey)
+       
                 
 
-       
-       
             # Navigating to a website
         if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
             if pleased: 
                 if len(querey) > 2:
                     speak("Going to...")
                     querey = ' '.join(querey[2:])
-                    webbrowser.get("Opera").open_new(querey)
+                    webbrowser.open("http://" + querey)
+                else:
+                    speak("Please provide a website URL.")
                 
         # Wikipedia search
             if len(querey) > 1 and querey[0] == 'wikipedia':
@@ -164,7 +161,12 @@ if __name__ == "__main__":
                 else:
                     speak("Please provide a search query.")
 
-                    
+        else:
+            if len(querey) > 0:
+                querey.pop(0) #removes say 
+                speech = ' '.join(querey)
+
         if not pleased: 
-                        speak("NO <3")
+                        speak("I didn't quite get that ")
+                        print("Where is the magic Word")
                         continue
