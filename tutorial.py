@@ -147,7 +147,7 @@ if __name__ == "__main__":
                 if len(query) > 2:
                     speak("Going to...")
                     query = ' '.join(query[2:])
-                    webbrowser.open("http://" + query)
+                    webbrowser.open("http://" + query + ".com")
                 else:
                     speak("Please provide a website URL.")
                 
