@@ -63,25 +63,22 @@ def parseCommand():
 
     try: 
         print('Reconizing speech..')
-        querey = listener.recognize_google(input_speech, language="en_gb")
-        print(f"You said {querey}")
-        speak(f"You said {querey}")
+        query = listener.recognize_google(input_speech, language="en_gb")
+        print(f"You said {query}")
+        speak(f"You said {query}")
     except Exception as exception: 
         print("I didn't quite get that")
         speak("I didnt quite get that")
         print(exception)
         return 'None'
     
-    return querey
+    return query
 
 
 
 
-def search_Wiki(querey = ''):
-    searchResults = wikipedia.search(querey) 
-    if not searchResults: 
-        print('No wikipedia result')
-        return 'No result recived'
+def search_Wiki(query = ''):
+    searchResults = wikipedia.search(query) 
     try:
         wikiPage = wikipedia.page(searchResults[0])
     except wikipedia.DisambiguationError as err:
@@ -99,42 +96,45 @@ if __name__ == "__main__":
 
     while True:
         #Parse input into a list 
-        querey = parseCommand().lower().split() #splits the command into a list broken up into different parts 
+        query = parseCommand().lower().split() #splits the command into a list broken up into different parts 
 
-        if len(querey) > 0 and querey[0] == activationWord:
+        if len(query) > 0 and query[0] == activationWord:
             print('I got you')
             speak(randomStartPhrase)
-            querey.pop(0)
+            query.pop(0)
 
-        if len(querey) > 0 and querey[0] == 'liz':
+        if len(query) > 0 and query[0] == 'liz':
             speak("What")
 
-        if len(querey) > 0 and querey[0] == 'wikipedia':
-            querey = ' '.join(querey[1:])
-            speak('Looking through the universal databank.')
-            speak(search_Wiki(querey))
+        if len(query) > 0 and query[0] == 'wikipedia':
+            if len(query) > 1: 
+                query = ' '.join(query[1:])
+                speak('Looking through the universal databank.')
+                speak(search_Wiki(query))
+            else:
+                speak('Please provide a search query')
 
-        if len(querey) > 0 and querey[0] == 'please': 
+        if len(query) > 0 and query[0] == 'please': 
             speak("Finally something that has some semblence of respect")
             pleased = True
-            querey.pop(0)
+            query.pop(0)
 
-        if len(querey) > 1 and querey[0] == 'thank' and querey[1] == 'you':
+        if len(query) > 1 and query[0] == 'thank' and query[1] == 'you':
             speak("Good. A Mortal with manners")
             thanked = True
-            querey.pop(0)
+            query.pop(0)
 
         if thanked:
             # Check for goodbye or other actions
-                if len(querey) > 0 and querey[0] == "goodbye":
+                if len(query) > 0 and query[0] == "goodbye":
                     speak(randomEndPhrase)
                     sys.exit()
 
-                if len(querey) > 1 and querey[0] == 'good' and querey[1] == 'bye':
+                if len(query) > 1 and query[0] == 'good' and query[1] == 'bye':
                     speak(randomEndPhrase)
                     sys.exit()
 
-                if len(querey) > 0 and querey[0] == 'bye':
+                if len(query) > 0 and query[0] == 'bye':
                     speak(randomEndPhrase)
                     sys.exit()
 
@@ -142,29 +142,30 @@ if __name__ == "__main__":
                 
 
             # Navigating to a website
-        if len(querey) > 1 and querey[0] == 'go' and querey[1] == 'to':
+        if len(query) > 1 and query[0] == 'go' and query[1] == 'to':
             if pleased: 
-                if len(querey) > 2:
+                if len(query) > 2:
                     speak("Going to...")
-                    querey = ' '.join(querey[2:])
-                    webbrowser.open("http://" + querey)
+                    query = ' '.join(query[2:])
+                    webbrowser.open("http://" + query)
                 else:
                     speak("Please provide a website URL.")
                 
         # Wikipedia search
-            if len(querey) > 1 and querey[0] == 'wikipedia':
-                if len(querey) > 1:
-                    querey = ' '.join(querey[1:])
+            if len(query) > 1 and query[0] == 'wikipedia':
+                if len(query) > 1:
+                    query = ' '.join(query[1:])
                     speak("Looking for that")
-                    result = search_Wiki(querey)
+                    result = search_Wiki(query)
                     speak(result)
                 else:
                     speak("Please provide a search query.")
 
         else:
-            if len(querey) > 0:
-                querey.pop(0) #removes say 
-                speech = ' '.join(querey)
+            if len(query) > 0:
+                query = list(query)
+                query.pop(0) #removes say 
+                speech = ' '.join(query)
 
         if not pleased: 
                         speak("I didn't quite get that ")
