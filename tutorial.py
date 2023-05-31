@@ -33,6 +33,12 @@ endPhrases = [
     "The next time you wake me from my slumber you'll find the funny numbers on the back of your credit card posted to twitter"
 ]
 
+commands =[
+    "wikipedia",
+    "Go To",
+    "Play"
+]
+
 thanked = False #sees if the user has said thank you 
 pleased = False # sees if the user has said please 
 
@@ -109,9 +115,10 @@ def get_joke():
 #our main loop
 
 if __name__ == "__main__":
-    speak("Im awake")
-    print("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
+    print(commands)
+    # speak(commands)
     speak("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
+    speak("Im awake")
 
     while True:
         #Parse input into a list 
@@ -121,6 +128,10 @@ if __name__ == "__main__":
             print('I got you')
             speak(randomStartPhrase)
             query.pop(0)
+
+        if len(query) > 0 and query[0] == "commands":
+            print(commands)
+            speak(commands)
 
         if len(query) > 0 and query[0] == 'liz':
             speak("What")
