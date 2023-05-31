@@ -115,10 +115,10 @@ def get_joke():
 #our main loop
 
 if __name__ == "__main__":
+    speak("I'm awake")
     print(commands)
-    # speak(commands)
-    speak("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
-    speak("Im awake")
+    speak("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. Go to followed by a website name to open the website. Tell me a joke to get me to tell you a funny joke. 'Play' followed by a song to get my to play it")
+    print("Ask me nicely to use the follwing commands: 'Wikipedia' followed by your search query to get me to search Wikipedia | 'Go to' followed by a website name to open the website | 'Tell me a joke' to get me to tell you funny joke | 'Play' followed by a song to get my to play it")
 
     while True:
         #Parse input into a list 
