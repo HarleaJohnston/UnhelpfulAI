@@ -88,8 +88,9 @@ def search_Wiki(query = ''):
 #our main loop
 
 if __name__ == "__main__":
-    print("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
     speak("Im awake")
+    print("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
+    speak("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
 
     while True:
         #Parse input into a list 
