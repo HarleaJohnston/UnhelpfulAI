@@ -92,6 +92,7 @@ def search_Wiki(query = ''):
 #our main loop
 
 if __name__ == "__main__":
+    print("Ask me nicely to use the follwing commands: Wikipedia followed by your search query to get me to search Wikipedia. 'Go to' followed by a website name to open the website. ")
     speak("Im awake")
 
     while True:
@@ -168,6 +169,6 @@ if __name__ == "__main__":
                 speech = ' '.join(query)
 
         if not pleased: 
-                        speak("I didn't quite get that ")
-                        print("Where is the magic Word")
+                        print("What is the magic word?")
+                        speak("What is the magic word?")
                         continue
