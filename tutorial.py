@@ -1,4 +1,7 @@
 from datetime import datetime
+from jokeapi import Jokes 
+import asyncio
+import requests
 import sys
 import speech_recognition as sr
 import pyttsx3
@@ -84,6 +87,24 @@ def search_Wiki(query = ''):
     return wikiSum
 
 
+def get_joke():
+    url = 'https://v2.jokeapi.dev/joke/Any'
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        if data['type'] == 'single':
+            joke = data['joke']
+            
+        else:
+            joke = f"{data['setup']} {data['delivery']}"
+            print(joke)
+        return joke
+
+    else:
+        return "Failed to retrieve a joke."
+
+      
 
 #our main loop
 
@@ -111,6 +132,14 @@ if __name__ == "__main__":
                 speak(search_Wiki(query))
             else:
                 speak('Please provide a search query')
+
+        if len(query) > 3 and query[0] == 'tell' and query[1] == 'me' and query[2] == 'a' and query[3] == 'joke':
+            if len(query) > 0: 
+                speak('Finding a joke.')
+                speak(get_joke())
+
+            else:
+                speak('Come again')
 
         if len(query) > 0 and query[0] == 'please': 
             speak("Finally something that has some semblence of respect")
@@ -158,6 +187,14 @@ if __name__ == "__main__":
                     speak(result)
                 else:
                     speak("Please provide a search query.")
+
+
+        # Tell me a joke
+            if len(query) > 3 and query[0] == 'tell' and query[1] == 'me' and query[2] == 'a' and query[3] == 'joke':
+                joke = get_joke()
+                print(joke)
+            else:
+                print("No joke for you, bozo.")
 
         else:
             if len(query) > 0:
