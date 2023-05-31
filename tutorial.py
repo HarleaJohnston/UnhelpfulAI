@@ -10,12 +10,16 @@ import wikipedia
 import wolframalpha
 import random
 
-
 #speech engine initialization 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id) #0 is for male;  1 for female
 activationWord = 'hello' #when you say Hello it will activate / it litens for the actication word
+
+
+
+
+
 
 
 startPhrases = [
@@ -118,7 +122,7 @@ if __name__ == "__main__":
     speak("I'm awake")
     print(commands)
     print("Ask me nicely to use the following commands: 'Wikipedia' followed by your search query to get me to search Wikipedia | 'Go to' followed by a website name to open the website | 'Tell me a joke' to get me to tell you funny joke | 'Play' followed by a song to get me to play it")
-    speak("Ask me nicely to use the following commands: Wikipedia followed by your search query to get me to search Wikipedia. Go to followed by a website name to open the website. Tell me a joke to get me to tell you a funny joke. 'Play' followed by a song to get me to play it")
+    # speak("Ask me nicely to use the following commands: Wikipedia followed by your search query to get me to search Wikipedia. Go to followed by a website name to open the website. Tell me a joke to get me to tell you a funny joke. 'Play' followed by a song to get me to play it")
 
     while True:
         #Parse input into a list 
@@ -143,6 +147,15 @@ if __name__ == "__main__":
                 speak(search_Wiki(query))
             else:
                 speak('Please provide a search query')
+
+
+        if len(query) > 1 and query[0] == 'play':
+            # speak('What would you like to hear?')
+            query = ' '.join(query[1:])
+            webbrowser.open('https://open.spotify.com/search/' + query)
+            speak('Playing now...')
+            # pyautogui.click(x=1055, y=617)
+            # query.pop(0)
 
         if len(query) > 3 and query[0] == 'tell' and query[1] == 'me' and query[2] == 'a' and query[3] == 'joke':
             if len(query) > 0: 
