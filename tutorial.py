@@ -202,6 +202,7 @@ if __name__ == "__main__":
 
         # Tell me a joke
             if len(query) > 3 and query[0] == 'tell' and query[1] == 'me' and query[2] == 'a' and query[3] == 'joke':
+                speak("You")
                 joke = get_joke()
                 print(joke)
             else:
