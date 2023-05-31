@@ -7,11 +7,13 @@ import wikipedia
 import wolframalpha
 import random
 
+
 #speech engine initialization 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id) #0 is for male;  1 for female
 activationWord = 'hello' #when you say Hello it will activate / it litens for the actication word
+
 
 startPhrases = [
     "Hello stupid mortal, I'm Liz your personal useless AI",
@@ -37,13 +39,7 @@ for i in range(4):
 
 for i in range(4):
     randomEndPhrase = random.choice(endPhrases)
-#configuring the browser going to open
-#set the path 
 
-
-#This needs to be changed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tTHIS IS FOR MY SPECIFIC COMPUTER
-#Opera_path = r"C:\Users\sbanfordbyington\AppData\Local\Programs\Opera GX\launcher.exe"
-#-------------------------------------------------------------------------------------
 
 
 def speak(text, rate = 150): 
