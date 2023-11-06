@@ -1,2 +1,2 @@
 # UnhelpfulAI
-Its and Ai and it's annoyingly unhelpful
+Its an Ai and it's annoyingly unhelpful
